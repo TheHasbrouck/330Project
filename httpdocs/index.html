@@ -1,0 +1,217 @@
+<!doctype html>
+<html><!-- InstanceBegin template="/Templates/master.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta charset="UTF-8">
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Home Page</title>
+<!-- InstanceEndEditable -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/custom.css" rel="stylesheet">
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+</head>
+
+<body>
+
+<!-- Nav Start -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Kick Ass Record Store</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">About <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Store<span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Contact <span class="sr-only">(current)</span></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!-- nav end -->
+
+<!-- InstanceBeginEditable name="Conent" -->
+<div class="container-fluid">
+	<!-- Carousel Start -->
+    <div class="row col-md-10 col-md-offset-1">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+              </ol>
+            
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner margin" role="listbox">
+                <div class="item active" id="ban1">            
+                </div>      
+                <div class="item" id="ban2">
+                </div>          
+                <div class="item" id="ban3">
+                </div>
+                <div class="item" id="ban4">
+                </div>
+              </div>
+            
+              <!-- Left and right controls -->
+              <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+        </div>
+   </div>
+  <!--Carousel End -->
+  
+  <!-- New Arrival -->
+    <div id="arrivals">
+        <div class="row col-md-10 col-md-offset-1 white">
+             <h3 class=""><u>New Arrivals</u></h3>
+        </div>
+        
+        <div class="row col-md-10 col-md-offset-1 white text-center padding margin">
+        	<div class="col-md-3">
+                <h5 id="artist1"></h5>
+                <div id="album1"></div>
+            </div>
+            <div class="col-md-3">
+                <h5 id="artist2"></h5>
+                <div id="album2"></div>
+            </div>
+            <div class="col-md-3">
+                <h5 id="artist3"></h5>
+                <div id="album3"></div>
+            </div>
+            <div class="col-md-3">
+                <h5 id="artist4"></h5>
+                <div id="album4"></div>
+            </div>
+       </div>
+   </div>
+   
+   <!-- news and events -->
+   <div class="row col-md-10 col-md-offset-1 white padding margin">
+   		<u><h3>News/Events</h3></u>
+        <p id="newstext"></p>
+   </div>
+   
+   <!-- quote of day -->
+    <div class="row col-md-10 col-md-offset-1 white">
+       	<u><h3 id="linkhead">Quote Of The Day</h3></u>
+        <p id="linktext"></p>  
+        <div id="linkcall"></div>   	
+    </div>
+   		
+ </div>
+<!-- InstanceEndEditable --> 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/contentful.js-master/dist/contentful.min.js"></script>
+<script src="js/marked-master/lib/marked.js"></script>
+<!-- InstanceBeginEditable name="Scripts" -->
+
+<script>
+<!--request data to show in console -->
+    	var request = new XMLHttpRequest();
+		request.open('GET', 'https://cdn.contentful.com/spaces/clc9cijcjmcd/entries?access_token=9802c47cdeb2e40562f5a4a05dd75f53088b7552b498c176ec9126ceb30d0f2c', true);	
+		request.onreadystatechange = function () {
+		  if (this.readyState === 4) {
+			console.log('Status:', this.status);
+			console.log('Headers:', this.getAllResponseHeaders());
+			console.log('Body:', this.responseText);		
+		  }
+		};
+request.send();
+</script>
+
+<script>
+<!--request and output data in webpage -->		
+		var request = new XMLHttpRequest();
+		request.open('GET', 'https://cdn.contentful.com/spaces/clc9cijcjmcd/entries?access_token=9802c47cdeb2e40562f5a4a05dd75f53088b7552b498c176ec9126ceb30d0f2c', true);  
+		request.onreadystatechange = function () {
+		  if (this.readyState === 4) {    
+			insertInDiv( JSON.parse(this.responseText) );
+		  }
+		};  
+		request.send();
+		
+		<!--assign variables for website -->
+		function insertInDiv(data) {
+		  
+		  // banner images
+		  var banner1 = new Image();
+      banner1.src = data.includes.Asset[7].fields.file.url;
+		  document.getElementById("ban1").appendChild(banner1);
+		  var banner2 = new Image();
+		  banner2.src = data.includes.Asset[1].fields.file.url;
+		  document.getElementById("ban2").appendChild(banner2);	
+		  var banner3 = new Image();
+		  banner3.src = data.includes.Asset[2].fields.file.url;
+		  document.getElementById("ban3").appendChild(banner3);
+		  var banner4 = new Image();
+		  banner4.src = data.includes.Asset[3].fields.file.url;
+		  document.getElementById("ban4").appendChild(banner4);	
+		  
+		  //new arrival names
+		  var arrival1 =  data.includes.Asset[6].fields.description;
+		  document.getElementById('artist1').innerHTML = arrival1;
+		  var arrival2 = data.includes.Asset[5].fields.description;
+		  document.getElementById('artist2').innerHTML = arrival2;
+		  var arrival3 = data.includes.Asset[4].fields.description;
+		  document.getElementById('artist3').innerHTML = arrival3;
+		  var arrival4 = data.includes.Asset[0].fields.description;
+		  document.getElementById('artist4').innerHTML = arrival4;
+		 	
+		  //new arrival album art		  
+		  var arrivalAlbum1 = new Image();
+		  arrivalAlbum1.src = data.includes.Asset[6].fields.file.url;
+	      arrivalAlbum1.setAttribute("width", "180px");
+		  document.getElementById("album1").appendChild(arrivalAlbum1);
+		  var arrivalAlbum2 = new Image();
+		  arrivalAlbum2.src = data.includes.Asset[5].fields.file.url;
+	      arrivalAlbum2.setAttribute("width", "180px");
+		  document.getElementById("album2").appendChild(arrivalAlbum2);
+		  var arrivalAlbum3 = new Image();
+		  arrivalAlbum3.src = data.includes.Asset[4].fields.file.url;
+	      arrivalAlbum3.setAttribute("width", "180px");
+		  document.getElementById("album3").appendChild(arrivalAlbum3);
+		  var arrivalAlbum4 = new Image();
+      arrivalAlbum4.src = data.includes.Asset[0].fields.file.url;
+	      arrivalAlbum4.setAttribute("width", "180px");
+		  document.getElementById("album4").appendChild(arrivalAlbum4);
+		  
+		  //news and events
+		  var newsText = data.items[0].fields.newsText;
+		  document.getElementById('newstext').innerHTML = marked(newsText);
+		  		
+		  //quote of the day
+		  var headerText = data.items[0].fields.exampleHeader;
+		  document.getElementById('linkhead').innerHTML = headerText;
+		  var bodyText = data.items[0].fields.exampleBody;
+		  document.getElementById('linktext').innerHTML = bodyText;
+		  // parsing markdown to html for link form contentful
+		  var linkIpsum = data.items[0].fields.linkIpsum;
+		  document.getElementById('linkcall').innerHTML = marked(linkIpsum);
+		}	
+</script>
+<!-- InstanceEndEditable -->
+</body>
+<!-- InstanceEnd --></html>
