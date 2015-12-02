@@ -12,6 +12,18 @@
 <link href="css/custom.css" rel="stylesheet">
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkRKEWl8RDVB9DQhS70VDR7ZrUllPNcvI"></script>
+ 
+ <style>
+ #map-div{
+ 		margin: 0;
+ 		padding: 0;
+ 		width: 542px;
+ 		height: 300px;
+ 		border: 1px solid black;
+		}
+	</style>
+ 
 </head>
 
 <body>
@@ -116,6 +128,7 @@
     <div class="row col-md-10 col-md-offset-1 white">
        	<u><h3 id="linkhead">Map Directions</h3></u>
         <p id="linktext"></p>  
+		<div id="map-div"></div>	
         <div id="linkcall"></div>   	
     </div>
    		
@@ -211,6 +224,28 @@ request.send();
 		  var linkIpsum = data.items[0].fields.linkIpsum;
 		  document.getElementById('linkcall').innerHTML = marked(linkIpsum);
 		}	
+		
+		
+		
+	var API_KEY = "ZmC3LRsj8dFFd5Ww";
+	var value;
+	var map;
+	var infowindow;
+	var markers = [];
+	window.onload = init;
+	
+	
+	function init(){
+		 var myLatLng = {lat: 43.157675, lng: -77.604461};
+		var mapOptions = { center: {lat: 43.157675, lng: -77.604461}, zoom: 15};
+
+		map = new google.maps.Map(document.getElementById('map-div'), mapOptions)
+		
+		var marker = new google.maps.Marker({position: myLatLng, map: map});
+		
+	}
+	
+	
 </script>
 <!-- InstanceEndEditable -->
 </body>
