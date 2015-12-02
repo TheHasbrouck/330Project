@@ -120,7 +120,7 @@
    
    <!-- news and events -->
    <div class="row col-md-10 col-md-offset-1 white padding margin">
-   		<u><h3>News/Events</h3></u>
+   		<u><h3>Featured Artist</h3></u>
         <p id="newstext"></p>
    </div>
    
@@ -258,8 +258,38 @@ request.send();
 		map = new google.maps.Map(document.getElementById('map-div'), mapOptions)
 		
 		var marker = new google.maps.Marker({position: myLatLng, map: map});
-		
+		getData();
 	}
+  
+   var LASTFM_URL = "http://ws.audioscrobbler.com/2.0/?method=artist.getInfo&artist=Foals&api_key=700e9e94bdc467f56f075359fece8087&format=json"
+  
+  function getData(){
+    var url = LASTFM_URL;
+    
+    // call the web service, and download the file
+		console.log("loading " + url);
+		$.ajax({
+		  dataType: "json",
+		  url: url,
+		  data: null,
+		  success: displayData
+     });
+  }
+  
+  function displayData(obj){
+    var artist = obj.artist;
+		var name = artist.name;
+		var listeners = artist.stats.listeners;
+		var summary = artist.bio.summary;
+		//var image  = artist["image size='large'"];
+		var line = "<div>";
+		line += "<h4>" + name + "</h4>";
+		//line +="<img src='" + image + "' alt= 'artist image' height='250' width='250'> <br>"
+		line += "<small><i>Total Listeners: " + listeners + "</i></small><br>";
+		line += "<br><small>" + summary + "</small>";
+		line += "</div>";
+    document.querySelector("newstext").innerHTML = line;
+  }
 	
 	
 </script>
