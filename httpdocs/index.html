@@ -121,6 +121,8 @@
    <!-- news and events -->
    <div class="row col-md-10 col-md-offset-1 white padding margin">
    		<u><h3>Featured Artist</h3></u>
+       <div id="featured-artist">
+       </div>>
         <p id="newstext"></p>
    </div>
    
@@ -288,7 +290,7 @@ request.send();
 		line += "<small><i>Total Listeners: " + listeners + "</i></small><br>";
 		line += "<br><small>" + summary + "</small>";
 		line += "</div>";
-    document.querySelector("newstext").innerHTML = line;
+    document.getElementById('featured-artist').innerHTML = line;
   }
 	
 	
