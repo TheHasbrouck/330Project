@@ -61,22 +61,19 @@
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
               <!-- Indicators -->
               <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                
                 <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>           
               </ol>
             
               <!-- Wrapper for slides -->
               <div class="carousel-inner margin" role="listbox">
-                <div class="item active" id="ban1">            
-                </div>      
-                <div class="item" id="ban2">
+                    
+                <div class="item active" id="ban2">
                 </div>          
                 <div class="item" id="ban3">
                 </div>
-                <div class="item" id="ban4">
-                </div>
+                
               </div>
             
               <!-- Left and right controls -->
@@ -189,18 +186,18 @@ request.send();
 		function insertInDiv(data) {
 		  
 		  // banner images
-		  var banner1 = new Image();
-      banner1.src = data.includes.Asset[7].fields.file.url;
-		  document.getElementById("ban1").appendChild(banner1);
+		 // var banner1 = new Image();
+      //banner1.src = data.includes.Asset[7].fields.file.url;
+		  //document.getElementById("ban1").appendChild(banner1);
 		  var banner2 = new Image();
 		  banner2.src = data.includes.Asset[1].fields.file.url;
 		  document.getElementById("ban2").appendChild(banner2);	
 		  var banner3 = new Image();
 		  banner3.src = data.includes.Asset[2].fields.file.url;
 		  document.getElementById("ban3").appendChild(banner3);
-		  var banner4 = new Image();
-		  banner4.src = data.includes.Asset[3].fields.file.url;
-		  document.getElementById("ban4").appendChild(banner4);	
+		 // var banner4 = new Image();
+		 // banner4.src = data.includes.Asset[3].fields.file.url;
+		  //document.getElementById("ban4").appendChild(banner4);	
 		  
 		  //new arrival names
 		  var arrival1 =  data.includes.Asset[6].fields.description;
@@ -264,9 +261,10 @@ request.send();
 		getData();
 	}
   
-   var LASTFM_URL = "http://ws.audioscrobbler.com/2.0/?method=artist.getInfo&artist=Foals&api_key=700e9e94bdc467f56f075359fece8087&format=json"
+  var LASTFM_URL = new XMLHttpRequest();
+   LASTFM_URL = "https://ws.audioscrobbler.com/2.0/?method=artist.getInfo&artist=Foals&api_key=700e9e94bdc467f56f075359fece8087&format=json"
   
-  function getData(){
+    function getData(){
     var url = LASTFM_URL;
     
     // call the web service, and download the file
